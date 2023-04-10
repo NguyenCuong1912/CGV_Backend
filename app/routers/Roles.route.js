@@ -3,10 +3,10 @@ const { CreateRole, DeleteRole, ReadRoles, UpdateRole, ReadRole } = require('../
 const { CheckExists } = require('../middlewares/validation/CheckExists.middleware');
 const { Roles } = require('../models/Roles.model');
 
-const roleRouter = express.Router();
-roleRouter.get('/', ReadRoles);
-roleRouter.get('/:id', CheckExists(Roles), ReadRole)
-roleRouter.post('/', CreateRole);
-roleRouter.put('/:id', CheckExists(Roles), UpdateRole)
-roleRouter.delete('/:id', CheckExists(Roles), DeleteRole);
-module.exports = { roleRouter }
+const roleRoute = express.Router();
+roleRoute.get('/', ReadRoles);
+roleRoute.get('/:id', CheckExists(Roles), ReadRole)
+roleRoute.post('/', CreateRole);
+roleRoute.put('/:id', CheckExists(Roles), UpdateRole)
+roleRoute.delete('/:id', CheckExists(Roles), DeleteRole);
+module.exports = { roleRoute }

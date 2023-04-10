@@ -4,9 +4,8 @@ const { Roles } = require("../models/Roles.model");
 const CreateRole = async (req, res) => {
     const { role_type, role_name } = req.body;
     try {
-
-        const checkRoleType = await Roles.find({ role_type: role_type });
-        if (!!checkRoleType.length) {
+        const checkExistsRole = await Roles.find({ role_type: role_type });
+        if (!!checkExistsRole.length) {
             res.status(401).send("Role Type is exists")
         } else {
             const newRole = await Roles.create({ role_type, role_name })
