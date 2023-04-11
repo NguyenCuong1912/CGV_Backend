@@ -1,5 +1,6 @@
 const { Accounts } = require("../models/Accounts.model");
-const { hashpassword, comparepassword } = require('../middlewares/bcrypt/index')
+const { hashpassword, comparepassword } = require('../middlewares/bcrypt/index');
+const { setToken } = require("../middlewares/jwt");
 const SignUp = async (req, res) => {
     const { email, password, fullname, phonenumber } = req.body;
     try {
@@ -19,13 +20,14 @@ const SignIn = async (req, res) => {
     try {
         const checkExistsAccount = await Accounts.findOne({ email })
         if (checkExistsAccount && checkExistsAccount.active) {
-            console.log("a")
             if (checkExistsAccount.block) {
                 res.status(401).send("Account is Block !")
             }
             if (comparepassword(password, checkExistsAccount.password)) {
+                const token = setToken(email, checkExistsAccount.fullname)
                 res.status(200).send({
                     Mess: "Login Success",
+                    token: token,
                     accountLogin: checkExistsAccount
                 })
             } else {
