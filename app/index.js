@@ -2,13 +2,16 @@ const express = require('express');
 const { connectDB } = require('./config/config');
 const { rootRouter } = require('./routers');
 const bodyParser = require('body-parser')
+const path = require('path')
 const app = express();
 const port = "8080"
 app.use(express.json())
 
 app.use('/api/v1', rootRouter)
 app.use(bodyParser.urlencoded({ extended: true }))
-
+//static file
+app.use('public', express.static(path.join(__dirname, 'public')));
+app.use('/api/v1', rootRouter);
 app.get('/', (req, res) => {
     res.send("Hello")
 })
