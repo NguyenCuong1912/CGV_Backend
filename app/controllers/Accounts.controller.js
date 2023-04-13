@@ -74,14 +74,14 @@ const ReadAccount = async (req, res) => {
 }
 const UpdateAccount = async (req, res) => {
     const { file, body, detail } = req;
-    const { password, fullname, phonenumber } = body;
+    const { password, fullname, phonenumber, point } = body;
     try {
-
         if (!comparepassword(password, detail.password)) {
             detail.password = hashpassword(password);
         }
         detail.fullname = fullname;
         detail.phonenumber = phonenumber;
+        detail.point = point;
         if (file?.path !== detail.avatar) {
             const avatar = await file.path.replace(/\\/g, '/');
             detail.avatar = avatar;

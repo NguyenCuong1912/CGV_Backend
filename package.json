@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate" : "node ./app/migrations/index.js",
+    "seed" : "node ./app/seed/index.js",
     "dev": "nodemon ./app/index.js",
     "start": "node ./app/index.js"
   },

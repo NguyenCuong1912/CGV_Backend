@@ -1,7 +1,7 @@
 const { connectDB } = require("../config/config");
-const { MigrateAccount } = require("./Account.migration")
-const { MigrateRank } = require("./Ranks.migration")
-const { MigrateRole } = require("./Roles.migration")
+const { MigrateAccount } = require("./Account.seed")
+const { MigrateRank } = require("./Ranks.seed")
+const { MigrateRole } = require("./Roles.seed")
 
 const Migrate = async () => {
     await connectDB();
