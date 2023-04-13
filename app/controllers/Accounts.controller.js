@@ -47,11 +47,10 @@ const SignIn = async (req, res) => {
 }
 const ReadAccounts = async (req, res) => {
     const { role } = req.account.data;
-    console.log(role)
     try {
         let listAccounts = []
         if (role === Role.ROLE_ADMIN.type) {
-            listAccounts = await Account.find().populate('role')
+            listAccounts = await Account.find({ active: true }).populate('role')
         }
         // if (role === ROLE_STAFF.type) {
         //     listAccounts = await Account.find({ role: ROLE_CLINET.type }).populate('role')

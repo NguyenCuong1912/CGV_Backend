@@ -3,10 +3,12 @@ const { connectDB } = require('./config/config');
 const { rootRouter } = require('./routers');
 const bodyParser = require('body-parser')
 const path = require('path')
+const cors = require('cors')
 const app = express();
 const port = "8080"
 app.use(express.json())
 
+app.use(cors())
 app.use('/api/v1', rootRouter)
 app.use(bodyParser.urlencoded({ extended: true }))
 //static file

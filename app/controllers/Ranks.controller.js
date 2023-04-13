@@ -4,7 +4,7 @@ const { Rank } = require('../models/Ranks.model')
 const { Status } = KeyConst
 const ReadRanks = async (req, res) => {
     try {
-        const ranks = await Rank.find();
+        const ranks = await Rank.find({ active: true });
         resData(res, Status.success, ranks)
     } catch (error) {
         resData(res, Status.error, error)
