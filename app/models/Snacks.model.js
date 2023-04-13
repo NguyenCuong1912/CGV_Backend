@@ -37,7 +37,6 @@ const SnackSchema = new Schema(
             type: String,
             default: true
         }
-
     },
     {
         timestamps: true,

@@ -6,14 +6,14 @@ const { UploadImage } = require('../middlewares/multer/upload');
 const { CheckExists } = require('../middlewares/validation/CheckExists.middleware');
 const { Snack } = require('../models/Snacks.model');
 
-const routeSnack = express.Router();
+const snackRoute = express.Router();
 
-routeSnack.post('/', authentication, AuthorizationAdmin, UploadImage('snacks'), CreateSnack);
-routeSnack.get('/', ReadSnacks);
-routeSnack.get('/:id', CheckExists(Snack), ReadSnack);
-routeSnack.put('/:id', authentication, AuthorizationAdmin, CheckExists(Snack), UploadImage('snacks'), UpdateSnack);
-routeSnack.delete('/:id', authentication, AuthorizationAdmin, CheckExists(Snack), DeleteSnack);
+snackRoute.post('/', authentication, AuthorizationAdmin, UploadImage('snacks'), CreateSnack);
+snackRoute.get('/', ReadSnacks);
+snackRoute.get('/:id', CheckExists(Snack), ReadSnack);
+snackRoute.put('/:id', authentication, AuthorizationAdmin, CheckExists(Snack), UploadImage('snacks'), UpdateSnack);
+snackRoute.delete('/:id', authentication, AuthorizationAdmin, CheckExists(Snack), DeleteSnack);
 
 module.exports = {
-    routeSnack
+    snackRoute
 }
