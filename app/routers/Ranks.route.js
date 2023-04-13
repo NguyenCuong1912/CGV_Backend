@@ -5,11 +5,11 @@ const { CheckExists } = require('../middlewares/validation/CheckExists.middlewar
 const { Rank } = require('../models/Ranks.model');
 const { Authorization, AuthorizationAdmin } = require('../middlewares/auth/authorization/authorization');
 
-const routeRank = express.Router();
+const rankRoute = express.Router();
 
-routeRank.get('/', authentication, AuthorizationAdmin, ReadRanks)
-routeRank.get('/:id', authentication, AuthorizationAdmin, CheckExists(Rank), ReadRank)
-routeRank.put('/:id', authentication, AuthorizationAdmin, CheckExists(Rank), UpdateRank)
+rankRoute.get('/', authentication, AuthorizationAdmin, ReadRanks)
+rankRoute.get('/:id', authentication, AuthorizationAdmin, CheckExists(Rank), ReadRank)
+rankRoute.put('/:id', authentication, AuthorizationAdmin, CheckExists(Rank), UpdateRank)
 module.exports = {
-    routeRank
+    rankRoute
 }
