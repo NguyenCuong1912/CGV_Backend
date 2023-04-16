@@ -12,7 +12,7 @@ app.use(cors())
 app.use('/api/v1', rootRouter)
 app.use(bodyParser.urlencoded({ extended: true }))
 //static file
-app.use('public', express.static(path.join(__dirname, 'public')));
+app.use('public', express.static(path.join(__dirname, 'app/public/images')));
 app.use('/api/v1', rootRouter);
 app.get('/', (req, res) => {
     res.send("Hello")

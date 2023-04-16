@@ -1,7 +1,7 @@
 const { KeyConst } = require('../../../constants/index')
 const { resData } = require('../../../constants/status')
-const { Role, Status } = KeyConst
-const { ROLE_ADMIN, ROLE_STAFF } = Role
+const { RoleConst, Status } = KeyConst
+const { ROLE_ADMIN, ROLE_STAFF } = RoleConst
 
 const Authorization = async (req, res, next) => {
     const { role } = req.account.data

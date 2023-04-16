@@ -3,7 +3,8 @@ const { hashpassword, comparepassword } = require('../middlewares/bcrypt/index')
 const { setToken } = require("../middlewares/auth/jwt");
 const { KeyConst } = require("../constants");
 const { resData } = require("../constants/status");
-const { Role, Status } = KeyConst
+const { Role } = require('../models/Roles.model')
+const { RoleConst, Status } = KeyConst
 const SignUp = async (req, res) => {
     const { email, password, fullname, phonenumber, role } = req.body;
     try {
@@ -12,7 +13,15 @@ const SignUp = async (req, res) => {
         if (checkExistsAccount) {
             res.status(Status.data_exists).send("Email is exists")
         } else {
-            const newAccount = await Account.create({ email, password: hashpass, fullname, phonenumber, role });
+            // ! check role when add
+            let newAccount = {}
+            // ! when signup
+            if (!!role) {
+                newAccount = await Account.create({ email, password: hashpass, fullname, phonenumber, role });
+            } else {
+                const _role = await Role.findOne({ role_type: RoleConst.ROLE_CLINET.type })
+                newAccount = await Account.create({ email, password: hashpass, fullname, phonenumber, role: _role });
+            }
             res.status(Status.created).send(newAccount)
         }
     } catch (error) {

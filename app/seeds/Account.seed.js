@@ -2,7 +2,7 @@ const { hashpassword } = require('../middlewares/bcrypt')
 const { Account } = require('../models/Accounts.model')
 const { Role } = require('../models/Roles.model')
 const { KeyConst } = require('../constants');
-const { ROLE_ADMIN } = KeyConst.Role
+const { ROLE_ADMIN } = KeyConst.RoleConst
 const MigrateAccount = () => {
     Account.find()
         .then(async data => {

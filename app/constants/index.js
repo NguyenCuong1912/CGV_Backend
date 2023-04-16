@@ -1,10 +1,11 @@
 const { Role } = require('./role')
-const { Status } = require('./status')
+const { Status, resData } = require('./status')
 const { Rank } = require('./rank')
 const KeyConst = {
-    Role,
+    RoleConst: Role,
     Status,
-    RankConst: Rank
+    RankConst: Rank,
+    resData
 }
 module.exports = {
     KeyConst

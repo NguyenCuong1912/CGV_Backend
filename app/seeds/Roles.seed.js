@@ -1,6 +1,6 @@
 const { Role } = require('../models/Roles.model')
 const { KeyConst } = require('../constants');
-const { ROLE_ADMIN, ROLE_CLINET, ROLE_STAFF } = KeyConst.Role;
+const { ROLE_ADMIN, ROLE_CLINET, ROLE_STAFF } = KeyConst.RoleConst;
 
 const MigrateRole = async () => {
     Role.find()
