@@ -10,7 +10,7 @@ const Migrate = async () => {
         await MigrateRank();
         await MigrateAccount();
         console.log("seeds sucess")
-        process.exit(1);
+        // process.exit(1);
     } catch (error) {
         console.log("seeds erorr")
         process.exit(1);
