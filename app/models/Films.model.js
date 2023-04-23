@@ -1,16 +1,17 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+
 const FilmSchema = Schema(
   {
     film_type: {
       type: Schema.Types.Array,
-      default: [],
       required: true,
       trim: true,
     },
     film_name: {
       type: String,
       required: true,
+      unique: true,
       trim: true,
     },
     film_image: {
