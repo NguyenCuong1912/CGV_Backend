@@ -35,9 +35,12 @@ const CreateFilm = async (req, res) => {
   }
 };
 const ReadFilms = async (req, res) => {
-  const { dataPagi } = req;
+  const { page = 1, limit = 10 } = req.query;
   try {
-    resData(res, Status.success, dataPagi);
+    const films = await Film.find({ active: true })
+      .skip((page - 1) * limit)
+      .limit(limit);
+    resData(res, Status.success, films);
   } catch (error) {
     resData(res, Status.sever_error, error);
   }

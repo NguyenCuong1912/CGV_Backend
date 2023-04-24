@@ -78,11 +78,15 @@ const SignIn = async (req, res) => {
   }
 };
 const ReadAccounts = async (req, res) => {
+  const { page = 1, limit = 10 } = req.query;
   const { role } = req.account.data;
   try {
     let listAccounts = [];
     if (role === RoleConst.ROLE_ADMIN.type) {
-      listAccounts = await Account.find({ active: true }).populate("role");
+      listAccounts = await Account.find({ active: true })
+        .skip((page - 1) * limit)
+        .limit(limit)
+        .populate("role");
     }
     // if (role === ROLE_STAFF.type) {
     //     listAccounts = await Account.find({ role: ROLE_CLINET.type }).populate('role')

@@ -21,8 +21,11 @@ const CreateCinema = async (req, res) => {
   }
 };
 const ReadCinemas = async (req, res) => {
+  const { page = 1, limit = 10 } = req.query;
   try {
-    const cinemas = await Cinema.find({ active: true });
+    const cinemas = await Cinema.find({ active: true })
+      .skip((page - 1) * limit)
+      .limit(limit);
     resData(res, Status.success, cinemas);
   } catch (error) {
     resData(res, Status.sever_error, error);
