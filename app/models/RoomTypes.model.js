@@ -2,24 +2,21 @@ const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
-const RoomsSchema = new Schema(
+const RoomTypeSchema = new Schema(
   {
-    room_name: {
+    name_type: {
       type: String,
       required: true,
       trim: true,
+      unique: true,
     },
-    cinema: {
-      type: "ObjectId",
-      ref: "Cinema",
+    image: {
+      type: Schema.Types.Array,
     },
-    seat_number: {
-      type: Schema.Types.Number,
+    description: {
+      type: Schema.Types.String,
       required: true,
-    },
-    room_type: {
-      type: "ObjectId",
-      ref: "RoomType",
+      trim: true,
     },
     active: {
       type: Schema.Types.Boolean,
@@ -31,8 +28,5 @@ const RoomsSchema = new Schema(
     versionKey: false,
   }
 );
-const Room = mongoose.model("Room", RoomsSchema);
 
-module.exports = {
-  Room,
-};
+const RoomType = mongoose.model("RoomType", RoomTypeSchema);

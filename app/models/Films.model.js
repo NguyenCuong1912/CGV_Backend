@@ -26,7 +26,10 @@ const FilmSchema = Schema(
       type: Schema.Types.String,
       required: true,
     },
-    //   allowAge: {},
+    allowAge: {
+      type: "ObjectId",
+      ref: "AllowAge",
+    },
     numberLike: {
       type: Schema.Types.Number,
       default: 0,

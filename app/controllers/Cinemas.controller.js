@@ -4,7 +4,7 @@ const { Cinema } = require("../models/Cinemas.model");
 const CreateCinema = async (req, res) => {
   const { cinema_name, province, position, fax } = req.body;
   try {
-    const checkCinema = await Cinema.findOne({ cinema_name });
+    const checkCinema = await Cinema.findOne({ cinema_name, active: true });
     if (!checkCinema) {
       const newCinema = await Cinema.create({
         cinema_name,
@@ -63,20 +63,31 @@ const UpdateCinema = async (req, res) => {
   }
 };
 
-// !! Update mutil image
-// const UpdateImage = async (req, res) => {
-//     const { detail } = req;
-//     try {
-
-//     } catch (error) {
-//         resData(res, Status.sever_error, error)
-//     }
-// }
+// !! Update mutil image for cinema
+const UpdateImageCinema = async (req, res) => {
+  const { detail, files } = req;
+  try {
+    if (files) {
+      const arrImage = [];
+      for (const file of files) {
+        const image = await file.path.replace(/\\/g, "/");
+        arrImage.push({ image });
+      }
+      detail.images = arrImage;
+      await detail.save();
+      resData(res, Status.success, detail);
+    } else {
+      resData(res, Status.success, detail);
+    }
+  } catch (error) {
+    resData(res, Status.sever_error, error);
+  }
+};
 module.exports = {
   CreateCinema,
   ReadCinemas,
   ReadCinema,
   DeleteCinema,
   UpdateCinema,
-  // UpdateImage
+  UpdateImageCinema,
 };
