@@ -30,3 +30,7 @@ const RoomTypeSchema = new Schema(
 );
 
 const RoomType = mongoose.model("RoomType", RoomTypeSchema);
+
+module.exports = {
+  RoomType,
+};

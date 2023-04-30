@@ -7,6 +7,7 @@ const { cinemaRoute } = require("./Cinemas.route");
 const { newsRoute } = require("./News.route");
 const { codeRoute } = require("./Codes.route");
 const { filmRoute } = require("./Films.route");
+const { roomTypeRoute } = require("./RoomTypes.route");
 
 const rootRouter = express.Router();
 rootRouter.use("/roles", roleRoute);
@@ -17,4 +18,5 @@ rootRouter.use("/cinemas", cinemaRoute);
 rootRouter.use("/news", newsRoute);
 rootRouter.use("/codes", codeRoute);
 rootRouter.use("/films", filmRoute);
+rootRouter.use("/roomtypes", roomTypeRoute);
 module.exports = { rootRouter };

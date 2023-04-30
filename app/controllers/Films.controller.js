@@ -67,7 +67,6 @@ const UpdateFilm = async (req, res) => {
   const {
     film_type,
     film_name,
-    film_image,
     date_start,
     time_of_film,
     director,

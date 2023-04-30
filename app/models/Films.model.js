@@ -30,10 +30,7 @@ const FilmSchema = Schema(
       type: "ObjectId",
       ref: "AllowAge",
     },
-    numberLike: {
-      type: Schema.Types.Number,
-      default: 0,
-    },
+    numberLike: [{ type: "ObjectId", ref: "Account" }],
     director: {
       type: Schema.Types.String,
       required: true,
